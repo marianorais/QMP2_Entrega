@@ -1,0 +1,134 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Prenda prenda;
+        prenda = new Prenda(Prenda.TipoDePrenda.ZAPATILLA,
+                Prenda.Categoria.PANTALON,
+                Prenda.Material.LANA,
+                Prenda.ColorPrincipal.AZUL,
+                "", Prenda.Trama.Estampado); //Creo el objeto
+
+        //Requerimiento 2
+        Prenda chomba = new Prenda(Prenda.TipoDePrenda.REMERA,Prenda.Categoria.ABRIGO,Prenda.Material.PIQUE,
+                Prenda.ColorPrincipal.VERDE,"",null);
+        Prenda pantalon= new Prenda(Prenda.TipoDePrenda.SHORT,Prenda.Categoria.PANTALON,Prenda.Material.ACETATO,
+                Prenda.ColorPrincipal.GRIS,"",null);
+        Prenda zapatilla = new Prenda(Prenda.TipoDePrenda.ZAPATILLA,Prenda.Categoria.CALZADO,null,
+                Prenda.ColorPrincipal.BLANCO,"",null);
+
+
+        Uniforme sanJose;
+        sanJose  = new Uniforme(chomba,pantalon,zapatilla);
+
+        zapatilla.colorPrincipal =  Prenda.ColorPrincipal.NEGRO;
+        chomba.tipoDePrenda = Prenda.TipoDePrenda.CAMISA;
+        pantalon.colorPrincipal = Prenda.ColorPrincipal.NEGRO;
+
+
+        Uniforme Johnson;
+        Johnson  = new Uniforme(chomba,pantalon,zapatilla);
+    }
+}
+class Prenda{
+
+    TipoDePrenda tipoDePrenda;
+    Categoria categoria;
+    Material material;
+    ColorPrincipal colorPrincipal;
+    String colorSecundario;
+    Trama trama;
+
+
+    Prenda(TipoDePrenda tipoDePrenda,Categoria categoria,
+           Material material, ColorPrincipal colorPrincipal,
+           String colorSecundario,Trama trama) {
+
+        TipoAndCategoria(tipoDePrenda,categoria);
+
+        this.tipoDePrenda = tipoDePrenda;
+        this.categoria = categoria;
+        this.material = material;
+        this.colorPrincipal = colorPrincipal;
+        this.colorSecundario = colorSecundario;
+        this.trama = trama;
+    }
+
+    public enum TipoDePrenda{
+        ZAPATILLA,SHORT, BUZO, REMERA,CAMISA
+    }
+
+    public void TipoAndCategoria(TipoDePrenda tipoDePrenda, Categoria categoria){
+        System.out.println(tipoDePrenda);
+        if (tipoDePrenda == TipoDePrenda.ZAPATILLA && categoria != Categoria.CALZADO){
+            System.out.println("No combina la prenda con la categoria");
+            throw new ArithmeticException();
+        }
+
+        if (tipoDePrenda == TipoDePrenda.BUZO && categoria != Categoria.ABRIGO){
+            System.out.println("No combina la prenda con la categoria");
+            throw new ArithmeticException();
+        }
+
+        if (tipoDePrenda == TipoDePrenda.SHORT && categoria != Categoria.PANTALON){
+            System.out.println("No combina la prenda con la categoria");
+            throw new ArithmeticException();
+        }
+    }
+    public enum Categoria{
+        PANTALON,CALZADO,ABRIGO
+    }
+    public enum ColorPrincipal{
+        ROJO,AZUL,VERDE,GRIS,BLANCO,NEGRO
+    }
+    public enum Material{
+        TELA,METAL,LANA,PIQUE,ACETATO
+
+    }
+    public enum Trama{
+        LISA, RAYADA, CONLUNARES, ACUADROS, Estampado
+    }
+}
+
+class Borrador{
+
+    Prenda.TipoDePrenda tipoDePrenda;
+    Prenda.Categoria categoria;
+    Prenda.Material material;
+    Prenda.ColorPrincipal colorPrincipal;
+    String colorSecundario;
+    Prenda.Trama trama;
+
+    Borrador(Prenda.TipoDePrenda tipoDePrenda) {// [3]
+        if(tipoDePrenda == null){
+            throw new ArithmeticException();
+        }
+       this.tipoDePrenda = tipoDePrenda;
+    }
+    Borrador(Prenda.Trama trama){
+        if(trama == null){
+            this.trama = Prenda.Trama.LISA;
+        }else{
+            this.trama = trama;
+        }
+    }
+
+    public Prenda nuevaPrenda(){
+        return new Prenda(this.tipoDePrenda,this.categoria,this.material,
+                this.colorPrincipal,this.colorSecundario,this.trama);
+    }
+}
+class Uniforme{
+    Prenda prendaSuperior;
+    Prenda prendaInferior;
+    Prenda calzado;
+    Uniforme(Prenda prendaSuperior, Prenda prendaInferior, Prenda calzado){
+        this.prendaSuperior = prendaSuperior;
+        this.prendaInferior = prendaInferior;
+        this.calzado = calzado;
+    }
+}
+
+
