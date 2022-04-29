@@ -6,15 +6,15 @@ public class Main {
 
         Prenda prenda;
         prenda = new Prenda(Prenda.TipoDePrenda.ZAPATILLA,
-                Prenda.Categoria.PANTALON,
+                Prenda.Categoria.CALZADO,
                 Prenda.Material.LANA,
                 Prenda.ColorPrincipal.AZUL,
                 "", Prenda.Trama.Estampado); //Creo el objeto
 
         //Requerimiento 2
-        Prenda chomba = new Prenda(Prenda.TipoDePrenda.REMERA,Prenda.Categoria.ABRIGO,Prenda.Material.PIQUE,
+        Prenda chomba = new Prenda(Prenda.TipoDePrenda.REMERA,Prenda.Categoria.PRENDASUPERIOR,Prenda.Material.PIQUE,
                 Prenda.ColorPrincipal.VERDE,"",null);
-        Prenda pantalon= new Prenda(Prenda.TipoDePrenda.SHORT,Prenda.Categoria.PANTALON,Prenda.Material.ACETATO,
+        Prenda pantalon= new Prenda(Prenda.TipoDePrenda.SHORT,Prenda.Categoria.PRENDAINFERIOR,Prenda.Material.ACETATO,
                 Prenda.ColorPrincipal.GRIS,"",null);
         Prenda zapatilla = new Prenda(Prenda.TipoDePrenda.ZAPATILLA,Prenda.Categoria.CALZADO,null,
                 Prenda.ColorPrincipal.BLANCO,"",null);
@@ -67,18 +67,18 @@ class Prenda{
             throw new ArithmeticException();
         }
 
-        if (tipoDePrenda == TipoDePrenda.BUZO && categoria != Categoria.ABRIGO){
+        if (tipoDePrenda == TipoDePrenda.BUZO && categoria != Categoria.PRENDASUPERIOR){
             System.out.println("No combina la prenda con la categoria");
             throw new ArithmeticException();
         }
 
-        if (tipoDePrenda == TipoDePrenda.SHORT && categoria != Categoria.PANTALON){
+        if (tipoDePrenda == TipoDePrenda.SHORT && categoria != Categoria.PRENDAINFERIOR){
             System.out.println("No combina la prenda con la categoria");
             throw new ArithmeticException();
         }
     }
     public enum Categoria{
-        PANTALON,CALZADO,ABRIGO
+        PRENDAINFERIOR,CALZADO,PRENDASUPERIOR
     }
     public enum ColorPrincipal{
         ROJO,AZUL,VERDE,GRIS,BLANCO,NEGRO
